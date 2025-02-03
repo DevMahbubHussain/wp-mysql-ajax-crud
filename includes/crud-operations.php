@@ -32,8 +32,29 @@ function crud_app_get_records()
     wp_send_json_success($results);
 }
 
-// delete single data
+// Update single data 
+function crud_app_update_record()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "crud_app";
 
+    $id = intval($_POST['id']);
+    $name = sanitize_text_field($_POST['name']);
+    $email = sanitize_email($_POST['email']);
+
+    $wpdb->update(
+        $table_name,
+        array(
+            'name' => $name,
+            'email' => $email
+        ),
+        array('id' => $id)
+    );
+    wp_send_json_success('Record updated successfully!');
+}
+
+
+// delete single data
 function crud_app_delete_record()
 {
     global $wpdb;
