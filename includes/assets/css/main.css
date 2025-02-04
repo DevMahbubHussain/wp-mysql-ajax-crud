@@ -27,3 +27,132 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+
+/* Form Container */
+#crud-form,
+#edit-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+#crud-form input,
+#crud-form textarea,
+#edit-form input,
+#edit-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+#crud-form input:focus,
+#crud-form textarea:focus,
+#edit-form input:focus,
+#edit-form textarea:focus {
+  border-color: #0073aa;
+  outline: none;
+}
+
+/* Buttons */
+#crud-form button,
+#edit-form button {
+  background: #0073aa;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+#crud-form button:hover,
+#edit-form button:hover {
+  background: #005177;
+}
+
+/* Cancel Button */
+#cancel-edit {
+  background: #ccc;
+  margin-left: 10px;
+}
+
+#cancel-edit:hover {
+  background: #999;
+}
+
+/* Table Container */
+#crud-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Head */
+#crud-table thead {
+  background: #0073aa;
+  color: #fff;
+}
+
+#crud-table th {
+  padding: 12px;
+  text-align: left;
+}
+
+/* Table Body */
+#crud-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#crud-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+#crud-table tbody tr:hover {
+  background: #f1f1f1;
+}
+
+#crud-table td {
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* Action Buttons */
+#crud-table .edit-record,
+#crud-table .delete-record {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 5px;
+  transition: background 0.3s ease;
+}
+
+#crud-table .edit-record {
+  background: #28a745;
+  color: #fff;
+}
+
+#crud-table .edit-record:hover {
+  background: #218838;
+}
+
+#crud-table .delete-record {
+  background: #dc3545;
+  color: #fff;
+}
+
+#crud-table .delete-record:hover {
+  background: #c82333;
+}

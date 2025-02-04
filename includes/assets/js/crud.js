@@ -1,4 +1,23 @@
 jQuery(document).ready(function ($) {
+  function showToast(icon, title) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: icon,
+      title: title,
+    });
+  }
+
   // Show Loader
   function showLoader() {
     $("#loader").show();
@@ -24,6 +43,7 @@ jQuery(document).ready(function ($) {
       },
       success: function (response) {
         // alert(response.data);
+        showToast("success", "Record added successfully!");
         loadRecords();
         $("#crud-form")[0].reset(); // Clear the form
       },
@@ -106,7 +126,7 @@ jQuery(document).ready(function ($) {
         email: $("#edit-email").val(),
       },
       success: function (response) {
-        alert(response.data);
+        showToast("success", "Record updated successfully!");
         loadRecords();
         $("#edit-form").hide(); // Hide the edit form
         $("#edit-form")[0].reset(); // Clear the form
@@ -197,7 +217,8 @@ jQuery(document).ready(function ($) {
               id: id,
             },
             success: function (response) {
-              Swal.fire("Deleted!", response.data, "success");
+              showToast("success", "Record deleted successfully!");
+              // Swal.fire("Deleted!", response.data, "success");
               loadRecords();
             },
             complete: function () {

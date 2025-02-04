@@ -21,3 +21,6 @@ include_once plugin_dir_path(__FILE__) . '/includes/crud-operations.php';
 include_once plugin_dir_path(__FILE__) . '/includes/ajax-handlers.php';
 //remove table during plugin deactivate
 include_once plugin_dir_path(__FILE__) . '/includes/deactivate.php';
+
+include_once plugin_dir_path(__FILE__) . '/includes/shortcodes/user-auth.php';
+include_once plugin_dir_path(__FILE__) . '/includes/users/auth.php';

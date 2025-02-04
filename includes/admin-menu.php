@@ -2,7 +2,6 @@
 
 function crud_app_admin_menu()
 {
-
     add_menu_page(
         'CRUD App',
         'CRUD App',
