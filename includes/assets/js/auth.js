@@ -30,10 +30,10 @@ jQuery(document).ready(function ($) {
     // Debugging: Check if values are being retrieved
     console.log({ user_login, user_pass });
 
-    // if (!user_login || !user_pass) {
-    //   alert("Username and Password are required!");
-    //   return;
-    // }
+    if (!user_login || !user_pass) {
+      alert("Username and Password are required!");
+      return;
+    }
 
     $.ajax({
       url: FAjax.ajax_url,
@@ -59,6 +59,56 @@ jQuery(document).ready(function ($) {
       },
       complete: function () {
         console.log("Login Request Completed");
+      },
+    });
+  });
+
+  // registration
+
+  $("#registration-form").on("submit", function (e) {
+    e.preventDefault();
+
+    // take all data from Registration form
+    let username = $("#reg-username").val();
+    let email = $("#reg-email").val();
+    let password = $("#reg-password").val();
+    let nonce = $("#nonce").val(); // Get nonce from hidden input
+    // Debugging: Log input values
+    console.log({ username, email, password });
+
+    // simple validation
+    if (!username || !email || !password) {
+      alert("All fields are required!");
+      return;
+    }
+
+    // now Ajax  request process code
+    $.ajax({
+      url: FAjax.ajax_url,
+      type: "POST",
+      data: {
+        action: "user_registration",
+        nonce: FAjax.nonce,
+        username: username,
+        email: email,
+        password: password,
+      },
+      success: function (response) {
+        console.log(response.data);
+
+        if (response.success) {
+          alert("Registration Successful! Redirecting to login...");
+          window.location.href = "/";
+        } else {
+          alert("Error: " + response.data.message);
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("AJAX Error:", textStatus, errorThrown);
+        alert("Ajax Request Failed");
+      },
+      complete: function () {
+        console.log("Registration Request Completed");
       },
     });
   });

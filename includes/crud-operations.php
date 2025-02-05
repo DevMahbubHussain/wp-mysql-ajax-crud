@@ -133,3 +133,51 @@ function auth_user_login()
         'redirect_url' => home_url('/') // Change this to the intended redirect page
     ]);
 }
+
+
+
+function auth_user_registration()
+{
+
+    // check if required fileds are provided or not 
+    if (!isset($_POST['username']) || !isset($_POST['email']) || !isset($_POST['password'])) {
+        wp_send_json_error(['message' => 'All fields are required.']);
+        return;
+    }
+
+    // take all values from Registration from via name field 
+    $username = sanitize_user($_POST['username']);
+    $email = sanitize_email($_POST['email']);
+    $password = sanitize_text_field($_POST['password']);
+
+
+    // Check for existing username or email
+    if (username_exists($username)) {
+        wp_send_json_error(['message' => 'Username already exists.']);
+        return;
+    }
+
+    if (email_exists($email)) {
+        wp_send_json_error(['message' => 'Email already exists.']);
+        return;
+    }
+
+    // create user 
+    $user_id = wp_insert_user([
+        'user_login' => $username,
+        'user_email' => $email,
+        'user_pass' => $password,
+        'role' => 'subscriber',  //default 
+    ]);
+
+    // Check if user creation was successful
+    if (is_wp_error($user_id)) {
+        wp_send_json_error([
+            'message' => $user_id->get_error_message()
+        ]);
+    }
+
+    wp_send_json_success([
+        'message' => 'Registration successful! You can now log in.',
+    ]);
+}

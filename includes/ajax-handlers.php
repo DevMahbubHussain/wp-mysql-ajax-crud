@@ -117,3 +117,13 @@ function auth_app_ajax_login()
 }
 add_action('wp_ajax_user_login', 'auth_app_ajax_login');
 add_action('wp_ajax_nopriv_user_login', 'auth_app_ajax_login');
+
+
+
+function auth_registration()
+{
+    check_ajax_referer('auth_app_nonce', 'nonce');
+    auth_user_registration();
+}
+add_action('wp_ajax_user_registration', 'auth_registration');
+add_action('wp_ajax_nopriv_user_registration', 'auth_registration');
